@@ -1,36 +1,54 @@
+var ball1;
+var speed = 5;
+var initial;
+var bounced = false;
+
+
 function setup() {
-	createCanvas(1200, 600);
+	createCanvas(screen.width, screen.height);
+	ball1 = new Ball(screen.width/2, 100, 20);
 }
 
 class Ball {
-	constructor(x, y)	{
+	constructor(x, y, r)	{
 		this.x = x;
 		this.y = y;
+		this.r = r;
 		this.initial = y;
 	}
 
-	move()	{
-		this.y -= 10;
+	move(speed)	{
+		this.y += speed;
 	}
 
 	bounce()	{
-		this.initial /= 2;
-		while(this.y < this.initial)	{
-			this.y += 10;
+		if(this.y > (this.initial + screen.height)/5)	{
+			return true;
+		} else {
+			this.initial += (this.initial + screen.height)/5;
+			return false;
 		}
 	}
 
-	show(x, y)	{
-		ellipse(this.x, this.y, 15);
+	show()	{
+		ellipse(this.x, this.y, this.r);
 	}
 }
 
 function draw() {
-	let ball1 = new Ball(mouseX, mouseY);
 	background(0);
-	ball1.move();
-	ball1.show();
-	if(ball1.x <= 0)	{
-		ball1.bounce();
+	if(bounced)	{
+		ball1.move(-speed);
+		ball1.show();
+		if(!ball1.bounce())	{
+			bounced = false;
+		}
+	} else {
+			ball1.move(speed);
+			ball1.show();
+	}
+
+	if(ball1.y >= screen.height)	{
+		bounced = true;
 	}
 }
