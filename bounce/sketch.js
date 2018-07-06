@@ -1,20 +1,29 @@
-var ball1;
 var speed = 5;
-var initial;
-var bounced = false;
 
+var balls = [];
 
 function setup() {
 	createCanvas(screen.width, screen.height);
-	ball1 = new Ball(screen.width/2, 100, 20);
+	ball1 = new Ball(width/2, 100, 20);
+}
+
+function mousePressed()	{
+	ball = new Ball(mouseX, mouseY);
+	balls.push(ball);
 }
 
 class Ball {
-	constructor(x, y, r)	{
+	constructor(x, y)	{
 		this.x = x;
 		this.y = y;
-		this.r = r;
+		this.r = random(15, 50);
+
+		this.red = random(1, 255);
+		this.green = random(1, 255);
+		this.blue = random(1, 255);
+
 		this.initial = y;
+		this.bounced = false;
 	}
 
 	move(speed)	{
@@ -31,24 +40,28 @@ class Ball {
 	}
 
 	show()	{
+		fill(this.red, this.green, this.blue);
+		noStroke();
 		ellipse(this.x, this.y, this.r);
 	}
 }
 
 function draw() {
 	background(0);
-	if(bounced)	{
-		ball1.move(-speed);
-		ball1.show();
-		if(!ball1.bounce())	{
-			bounced = false;
+	for(var i = 0; i < balls.length; i++)	{
+		if(balls[i].bounced)	{
+			balls[i].move(-speed);
+			balls[i].show();
+			if(!balls[i].bounce())	{
+				balls[i].bounced = false;
+			}
+		} else {
+				balls[i].move(speed);
+				balls[i].show();
 		}
-	} else {
-			ball1.move(speed);
-			ball1.show();
-	}
 
-	if(ball1.y >= screen.height)	{
-		bounced = true;
+		if(balls[i].y >= screen.height)	{
+			balls[i].bounced = true;
+		}
 	}
 }
