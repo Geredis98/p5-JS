@@ -23,6 +23,10 @@ function drawGameboard()	{
 	}
 }
 
+function approximateClick()	{
+	
+}
+
 function draw()	{
 	drawGameboard();
 }
