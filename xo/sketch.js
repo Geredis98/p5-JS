@@ -24,7 +24,7 @@ function drawGameboard()	{
 }
 
 function approximateClick()	{
-	
+	//INSERT A CODE HERE
 }
 
 function draw()	{
