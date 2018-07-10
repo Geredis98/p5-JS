@@ -30,8 +30,8 @@ function drawGameboard()	{
 }
 
 function mousePressed()	{
-	let x = Math.floor(mouseX / 30);
-	let y = Math.floor(mouseY / 30);
+	let x = Math.floor(mouseX / 25);
+	let y = Math.floor(mouseY / 25);
 
 	gameboard[x][y] = 1;
 }
@@ -42,7 +42,7 @@ function drawTurns(gameboard, board_size)	{
 			if(gameboard[i][j] == 1)	{
 				stroke(1);
 				fill(255, 0, 0);
-				ellipse(12 * i, 12 * j, 4, 3);
+				ellipse(25 * i + 12, 25 * j + 12, 4, 4);
 			}
 		}
 	}
