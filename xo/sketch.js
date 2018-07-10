@@ -42,7 +42,7 @@ function drawTurns(gameboard, board_size)	{
 			if(gameboard[i][j] == 1)	{
 				stroke(1);
 				fill(255, 0, 0);
-				ellipse(12 * i, 12 * j, 4, 4);
+				ellipse(12 * i, 12 * j, 4, 3);
 			}
 		}
 	}
