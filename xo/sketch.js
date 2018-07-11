@@ -77,7 +77,6 @@ function checkSymbols(gameboard, x, y, changeX, changeY, symbol, board_size)	{
 		i++;
 	}
 	alert("Player " + symbol + " wins!");
-	resetGame(gameboard);
 }
 
 function drawTurns(gameboard, board_size)	{
