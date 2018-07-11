@@ -14,10 +14,15 @@ function createLevel(level)	{
 	}
 }
 
+function resetLevel()	{
+	level++;
+	createLevel(level);
+}
+
 class Meteor	{
 	constructor(speedMultiplier)	{
-		this.r = random(10, 40);
-		this.x = random(50, 700);
+		this.r = random(15, 30);
+		this.x = random(25, 725);
 		this.y = 0;
 		this.speed = random(0.5, 1);
 		this.speedMultiplier = speedMultiplier;
@@ -36,19 +41,19 @@ class Meteor	{
 
 	crashTest()	{
 		if(this.y >= 750)	{
-			alert("GAME OVER!");
+			alert("GAME OVER! YOU HAVE REACHED LEVEL: " + level);
 		}
 	}
 
 	show()	{
 		noStroke();
-		fill(139, 69, 19);
+		fill(255, 0, 0);
 		ellipse(this.x, this.y, this.r);
 	}
 }
 
 function mousePressed()	{
-	for(let i = 0; i < 10; i++)	{
+	for(let i = 0; i < meteors.length; i++)	{
 		if(meteors[i].shoot())	{
 			meteors.splice(i, 1);
 		}
@@ -57,9 +62,12 @@ function mousePressed()	{
 
 function draw() {
 	background(0);
-	for(let i = 0; i < 10; i++)	{
+	for(let i = 0; i < meteors.length; i++)	{
 		meteors[i].move();
 		meteors[i].show();
 		meteors[i].crashTest();
+	}
+	if(meteors.length == 0)	{
+		resetLevel();
 	}
 }
