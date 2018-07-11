@@ -49,7 +49,7 @@ function mousePressed()	{
 	}
 }
 
-function checkWinCondition(gameboard, board_size, symbol)	{
+function checkWinCondition(gameboard, board_size, symbol)	{		// Checks all directions for possible victory
 	for(let i = 0; i < board_size; i++)	{
 		for(let j = 0; j < board_size; j++)	{
 			if(gameboard[i][j] == symbol)	{
@@ -69,12 +69,12 @@ function checkWinCondition(gameboard, board_size, symbol)	{
 function checkSymbols(gameboard, x, y, changeX, changeY, symbol, board_size)	{
 	let i = 0;
 	while(i < 5 && x > 0 && x < board_size && y > 0 && y < board_size)	{
-			if(gameboard[x][y] != symbol)	{
-				return;
-			}
-			x += changeX;
-			y += changeY;
-			i++;
+		if(gameboard[x][y] != symbol)	{
+			return;
+		}
+		x += changeX;
+		y += changeY;
+		i++;
 	}
 	alert("Player " + symbol + "wins!");
 }
