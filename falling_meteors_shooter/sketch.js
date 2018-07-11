@@ -1,18 +1,26 @@
-var meteor1;
+var meteors = [];
+var level = 1;
 var shooted = false;
 
 function setup() {
 	createCanvas(750, 750);
-	meteor1 = new Meteor();
+	createLevel(level);
+}
+
+function createLevel(level)	{
+	for(let i = 0; i < 10; i++)	{
+		let meteor = new Meteor(level);
+		meteors.push(meteor);
+	}
 }
 
 class Meteor	{
-	constructor()	{
+	constructor(speedMultiplier)	{
 		this.r = random(10, 40);
 		this.x = random(50, 700);
 		this.y = 0;
 		this.speed = random(0.5, 1);
-		this.speedMultiplier = 1;
+		this.speedMultiplier = speedMultiplier;
 	}
 
 	move()	{
@@ -22,7 +30,7 @@ class Meteor	{
 	shoot()	{
 		let distance = dist(mouseX, mouseY, this.x, this.y);
 		if(distance <= this.r)	{
-			shooted = true;
+			return true;
 		}
 	}
 
@@ -34,22 +42,24 @@ class Meteor	{
 
 	show()	{
 		noStroke();
-		if(shooted == false)	{
-			fill(139, 69, 19);
-		} else {
-			fill(0);
-		}
+		fill(139, 69, 19);
 		ellipse(this.x, this.y, this.r);
 	}
 }
 
 function mousePressed()	{
-	meteor1.shoot();
+	for(let i = 0; i < 10; i++)	{
+		if(meteors[i].shoot())	{
+			meteors.splice(i, 1);
+		}
+	}
 }
 
 function draw() {
 	background(0);
-	meteor1.move();
-	meteor1.show();
-	meteor1.crashTest()
+	for(let i = 0; i < 10; i++)	{
+		meteors[i].move();
+		meteors[i].show();
+		meteors[i].crashTest();
+	}
 }
