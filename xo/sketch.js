@@ -4,7 +4,7 @@ var person = 1;
 
 function setup()	{
 	background(255);
-	createCanvas(750, 750);
+	createCanvas(1500, 1500);
 	createGameboard(gameboard, board_size);
 }
 
@@ -40,11 +40,43 @@ function mousePressed()	{
 
 	if(person == 1)	{
 		gameboard[x][y] = 1;
+		checkWinCondition(gameboard, board_size, person);
 		person = 2;
 	} else {
 		gameboard[x][y] = 2;
+		checkWinCondition(gameboard, board_size, person);
 		person = 1;
 	}
+}
+
+function checkWinCondition(gameboard, board_size, symbol)	{
+	for(let i = 0; i < board_size; i++)	{
+		for(let j = 0; j < board_size; j++)	{
+			if(gameboard[i][j] == symbol)	{
+				checkSymbols(gameboard, i, j, 0, -1, symbol, board_size);
+				checkSymbols(gameboard, i, j, 1, -1, symbol, board_size);
+				checkSymbols(gameboard, i, j, 1, 0, symbol, board_size);
+				checkSymbols(gameboard, i, j, 1, 1, symbol, board_size);
+				checkSymbols(gameboard, i, j, 0, 1, symbol, board_size);
+				checkSymbols(gameboard, i, j, -1, 1, symbol, board_size);
+				checkSymbols(gameboard, i, j, -1, 0, symbol, board_size);
+				checkSymbols(gameboard, i, j, -1, -1, symbol, board_size);
+			}
+		}
+	}
+}
+
+function checkSymbols(gameboard, x, y, changeX, changeY, symbol, board_size)	{
+	let i = 0;
+	while(i < 5 && x > 0 && x < board_size && y > 0 && y < board_size)	{
+			if(gameboard[x][y] != symbol)	{
+				return;
+			}
+			x += changeX;
+			y += changeY;
+			i++;
+	}
+	alert("Player " + symbol + "wins!");
 }
 
 function drawTurns(gameboard, board_size)	{
