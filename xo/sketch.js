@@ -4,7 +4,7 @@ var person = 1;
 
 function setup()	{
 	background(255);
-	createCanvas(1500, 1500);
+	createCanvas(1000, 1000);
 	createGameboard(gameboard, board_size);
 }
 
@@ -24,9 +24,9 @@ function createGameboard(gameboard, board_size)	{
 function drawGameboard()	{
 	stroke(0);
 	let i = 1;
-	while(25 * i < 750)	{
-		line(25 * i, 0, 25 * i, 750);
-		line(0, 25 * i, 750, 25 * i);
+	while(25 * i < 1000)	{
+		line(25 * i, 0, 25 * i, 1000);
+		line(0, 25 * i, 1000, 25 * i);
 		i++;
 	}
 }
@@ -76,7 +76,8 @@ function checkSymbols(gameboard, x, y, changeX, changeY, symbol, board_size)	{
 		y += changeY;
 		i++;
 	}
-	alert("Player " + symbol + "wins!");
+	alert("Player " + symbol + " wins!");
+	resetGame(gameboard);
 }
 
 function drawTurns(gameboard, board_size)	{
