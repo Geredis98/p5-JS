@@ -26,6 +26,12 @@ class Meteor	{
 		}
 	}
 
+	crashTest()	{
+		if(this.y >= 750)	{
+			alert("GAME OVER!");
+		}
+	}
+
 	show()	{
 		noStroke();
 		if(shooted == false)	{
@@ -45,4 +51,5 @@ function draw() {
 	background(0);
 	meteor1.move();
 	meteor1.show();
+	meteor1.crashTest()
 }
