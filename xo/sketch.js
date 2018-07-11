@@ -1,6 +1,6 @@
 let board_size = 30;
 let gameboard = new Array(board_size); // Array containing X and O, used for checking winner
-var person = 1;
+var person = 1; // Person: 1 - X symbol, 2 - O symbol
 
 function setup()	{
 	background(255);
