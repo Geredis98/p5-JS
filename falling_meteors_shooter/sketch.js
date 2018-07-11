@@ -1,7 +1,9 @@
+var meteor1;
+
 function setup() {
 	createCanvas(750, 750);
 	background(0);
-	var meteor1 = new Meteor();
+	meteor1 = new Meteor();
 }
 
 class Meteor	{
