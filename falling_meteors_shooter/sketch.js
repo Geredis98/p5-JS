@@ -24,7 +24,7 @@ class Meteor	{
 		this.r = random(15, 30);
 		this.x = random(25, 725);
 		this.y = 0;
-		this.speed = random(0.5, 1);
+		this.speed = map(this.r, 15, 30, 0.5, 1);	// bigger the object is, faster it falls
 		this.speedMultiplier = speedMultiplier;
 	}
 
