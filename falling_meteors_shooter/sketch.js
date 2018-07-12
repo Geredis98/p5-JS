@@ -67,4 +67,7 @@ function draw() {
 		meteors[i].show();
 		meteors[i].crashTest();
 	}
+	if(meteors.length == 0)	{
+		resetLevel();
+	}
 }
