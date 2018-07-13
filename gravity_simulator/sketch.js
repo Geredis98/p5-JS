@@ -1,5 +1,4 @@
-let planet;
-let planetCreated = false;
+let planets = [];
 
 function setup() {
 	createCanvas(750, 750);
@@ -7,14 +6,14 @@ function setup() {
 
 function draw() {
 	background(0);
-	if (planetCreated)	{
+	for (planet of planets)	{
 		planet.show();
 	}
 }
 
 function mousePressed()	{
 	planet = new Planet(mouseX, mouseY);
-	planetCreated = true;
+	planets.push(planet);
 }
 
 class Planet	{
