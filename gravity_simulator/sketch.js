@@ -14,6 +14,7 @@ function draw() {
 function mousePressed()	{
 	planet = new Planet(mouseX, mouseY);
 	planets.push(planet);
+	console.log(planet.gravity);
 }
 
 class Planet	{
@@ -22,6 +23,7 @@ class Planet	{
 		this.y = y;
 		this.r = random(10, 50);
 		this.color = color(random(1, 255), random(1, 255), random(1, 255));
+		this.gravity = 0.5 * this.r;
 	}
 
 	show()	{
