@@ -8,6 +8,8 @@ function draw() {
 	background(0);
 	for (planet of planets)	{
 		planet.show();
+		planet.determineMovement();
+		planet.move();
 	}
 }
 
@@ -23,8 +25,22 @@ class Planet	{
 		this.r = random(10, 50);
 		this.color = color(random(1, 255), random(1, 255), random(1, 255));
 		this.gravity = 0.5 * this.r;
-		this.xMove = 0;
-		this.yMove = 0;
+		this.moveX = 0;
+		this.moveY = 0;
+	}
+
+	move()	{
+		this.x += 0.5 * this.moveX;
+		this.y += 0.5 * this.moveY;
+	}
+
+	determineMovement()	{
+		for (let i = 0; i < planets.length; i++)	{
+			if (this.r < planets[i].r)	{
+				this.moveX = planets[i].x - this.x;
+				this.moveY = planets[i].y - this.y;
+			}
+		}
 	}
 
 	show()	{
