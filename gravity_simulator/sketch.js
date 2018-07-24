@@ -6,10 +6,12 @@ function setup() {
 
 function draw() {
 	background(0);
-	for (planet of planets)	{
-		planet.move();
-		planet.show();
-		planet.determineMovement();
+	for (let i = 0; i < planets.length; i++)	{
+		planets[i].move();
+		planets[i].show();
+		planets[i].determineMovement();
+//		planets[i].checkAbsorbation();
+//		planets[i].removeAbsorbedPlanet();
 	}
 }
 
@@ -27,6 +29,7 @@ class Planet	{
 		this.gravity = 0.5 * this.r;
 		this.moveX = 0;
 		this.moveY = 0;
+		this.absorbed = false;
 	}
 
 	move()	{
@@ -39,6 +42,23 @@ class Planet	{
 			if (this.r < planets[i].r)	{
 				this.moveX = planets[i].x - this.x;
 				this.moveY = planets[i].y - this.y;
+			}
+		}
+	}
+
+	checkAbsorbation()	{
+		for (let i = 0; i < planets.length; i++)	{
+			if (this.x == planets[i].x && this.y == planets[i].y)	{
+				this.absorbed = true;
+				planets[i].r += this.r/4;
+			}
+		}
+	}
+
+	removeAbsorbedPlanet()	{
+		for (let i = 0; i < planets.length; i++)	{
+			if (planets[i].absorbed == true)	{
+				planets.splice(i, 1);
 			}
 		}
 	}
