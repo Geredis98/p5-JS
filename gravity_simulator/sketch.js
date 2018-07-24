@@ -7,9 +7,9 @@ function setup() {
 function draw() {
 	background(0);
 	for (planet of planets)	{
+		planet.move();
 		planet.show();
 		planet.determineMovement();
-		planet.move();
 	}
 }
 
@@ -30,8 +30,8 @@ class Planet	{
 	}
 
 	move()	{
-		this.x += 0.5 * this.moveX;
-		this.y += 0.5 * this.moveY;
+		this.x += 0.0125 * this.moveX;
+		this.y += 0.0125 * this.moveY;
 	}
 
 	determineMovement()	{
