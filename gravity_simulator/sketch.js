@@ -50,7 +50,7 @@ class Planet	{
 	checkAbsorbation(indexOfPlanet)	{
 		for (let i = 0; i < planets.length; i++)	{
 			if (this.x == planets[i].x && this.y == planets[i].y)	{
-				if (i != indexOfPlanet)	{
+				if (i != indexOfPlanet)	{ // fix this to determine whether === same object
 					this.absorbed = true;
 					planets[i].r += this.r / 4;
 				}
