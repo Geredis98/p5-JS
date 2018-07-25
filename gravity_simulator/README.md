@@ -4,9 +4,9 @@ This repository constains my small project in p5 JS. It is supposed to be a simu
 Each planet has a random color. The color of a planet created by merging two existing planets is selected by combinating their RGB.
 
 TO-DO List:
-[x] Create a planet object
-[x] Simulate gravitational constant
-[x] Set random color to every generated planet
-[] Create custom shaped planets
-[] Create the option to name the planets
-[] Adjust the speed at which planets move
+- [x] Create a planet object
+- [x] Simulate gravitational constant
+- [x] Set random color to every generated planet
+- [] Create custom shaped planets
+- [] Create the option to name the planets
+- [] Adjust the speed at which planets move
