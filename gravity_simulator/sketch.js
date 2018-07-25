@@ -10,14 +10,15 @@ function draw() {
 		planets[i].move();
 		planets[i].show();
 		planets[i].determineMovement();
-//		planets[i].checkAbsorbation();
-//		planets[i].removeAbsorbedPlanet();
+		planets[i].checkAbsorbation(i);
+		planets[i].removeAbsorbedPlanet();
 	}
 }
 
 function mousePressed()	{
 	planet = new Planet(mouseX, mouseY);
 	planets.push(planet);
+	console.log(planets.length);
 }
 
 class Planet	{
@@ -33,24 +34,26 @@ class Planet	{
 	}
 
 	move()	{
-		this.x += 0.0125 * this.moveX;
-		this.y += 0.0125 * this.moveY;
+		this.x += 0.025 * this.moveX;
+		this.y += 0.025 * this.moveY;
 	}
 
 	determineMovement()	{
 		for (let i = 0; i < planets.length; i++)	{
 			if (this.r < planets[i].r)	{
-				this.moveX = planets[i].x - this.x;
-				this.moveY = planets[i].y - this.y;
+					this.moveX = planets[i].x - this.x;
+					this.moveY = planets[i].y - this.y;
 			}
 		}
 	}
 
-	checkAbsorbation()	{
+	checkAbsorbation(indexOfPlanet)	{
 		for (let i = 0; i < planets.length; i++)	{
 			if (this.x == planets[i].x && this.y == planets[i].y)	{
-				this.absorbed = true;
-				planets[i].r += this.r/4;
+				if (i != indexOfPlanet)	{
+					this.absorbed = true;
+					planets[i].r += this.r / 4;
+				}
 			}
 		}
 	}
